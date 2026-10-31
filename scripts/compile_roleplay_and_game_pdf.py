@@ -16,10 +16,12 @@ import os
 import re
 import shutil
 import subprocess
+import tempfile
 import pypdf
 
 WEB_DIR = os.path.join(os.path.dirname(__file__), "..", "備課平台")
-ARTIFACT_DIR = "/Users/eva/.gemini/antigravity/brain/04223d87-8bd5-4f9d-9ec1-2a8a102b11ad"
+ARTIFACT_DIR = os.environ.get("SOCIAL_SKILLS_ARTIFACT_DIR") or os.path.join(tempfile.gettempdir(), "social-skills-artifacts")
+os.makedirs(ARTIFACT_DIR, exist_ok=True)
 
 # 1. 讀取 defaultBriefings 與 roleplays 資料庫
 node_cmd = """
